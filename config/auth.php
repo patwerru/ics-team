@@ -42,7 +42,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'passport',
+            'driver' => 'token',
             'provider' => 'users',
         ],
     ],
@@ -67,19 +67,19 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\User::class,
         ],
 
+        // 'users' => [
+        //     'driver' => 'database',
+        //     'table' => 'users',
+        // ],
     ],
 
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
     |--------------------------------------------------------------------------
-    |
-    | Here you may set the options for resetting passwords including the view
-    | that is your password reset e-mail. You may also set the name of the
-    | table that maintains all of the reset tokens for your application.
     |
     | You may specify multiple password reset configurations if you have more
     | than one user table or model in the application and you want to have
@@ -94,27 +94,9 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'email' => 'auth.emails.password',
             'table' => 'password_resets',
             'expire' => 60,
         ],
-    ],
-
-    /*
-   |--------------------------------------------------------------------------
-   | Login throttling
-   |--------------------------------------------------------------------------
-   |
-   | This handles the max failed login attempt throttling.
-   | You should not change the values here, but should change them in your
-   | application's .env file instead, as future changes to this file could
-   | overwrite your changes here.
-   |
-   */
-
-    'throttle' => [
-        'max_attempts' => env('LOGIN_MAX_ATTEMPTS', 10),
-        'lockout_duration' =>  env('LOGIN_LOCKOUT_DURATION', 60),
     ],
 
 ];

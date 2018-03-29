@@ -10,9 +10,10 @@ return [
     | This value is the name of your application. This value is used when the
     | framework needs to place the application's name in a notification or
     | any other location as required by the application or its packages.
+    |
     */
 
-    'name' => env('SITE_NAME', 'Snipe-IT'),
+    'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +40,6 @@ return [
     */
 
     'debug' => env('APP_DEBUG', false),
-    'warn_debug' => env('WARN_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' =>  env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' =>  env('APP_LOCALE', 'en'),
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -106,133 +106,7 @@ return [
 
     'key' => env('APP_KEY'),
 
-    'cipher' =>  env('APP_CIPHER', 'AES-256-CBC'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Logging Configuration
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure the log settings for your application. Out of
-    | the box, Laravel uses the Monolog PHP logging library. This gives
-    | you a variety of powerful log handlers / formatters to utilize.
-    |
-    | Available Settings: "single", "daily", "syslog", "errorlog"
-    |
-    */
-
-    'log' => env('APP_LOG', 'single'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Logging Max Files
-    |--------------------------------------------------------------------------
-    |
-    | When using the daily log mode, Laravel will only retain 5
-    | days of log files by default.
-    |
-    | To change this, set the APP_LOG_MAX_FILES option in your .env.
-    |
-    */
-
-    'log_max_files' => env('APP_LOG_MAX_FILES', 5),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Logging Detail
-    |--------------------------------------------------------------------------
-    |
-    | By default, Laravel writes all log levels to storage. However, in your 
-    | production environment, you may wish to configure the minimum severity that 
-    | should be logged by editing your APP_LOG_LEVEL env config.
-    |
-    | Laravel will log all levels greater than or equal to the specified severity.
-    | For example, a default log_level of error will log error, critical, alert,
-    | and emergency messages.
-    |
-    | APP_LOG_LEVEL options are:
-    | "debug", "info", "notice", "warning", "error", "critical", "alert", "emergency"
-    |
-    */
-    
-    'log_level' => env('APP_LOG_LEVEL', 'error'),
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Default Storage path for private uploads
-    |--------------------------------------------------------------------------
-    | This is the path for any uploaded files that have to be run through the
-    | auth system to ensure they are not visible to the public. These should be
-    | stored somewhere outside of the web root so that an unauthenticated user
-    | cannot access them.
-    |
-    | For example: license keys, contracts, etc.
-    |
-    */
-
-    'private_uploads' => storage_path().'/private_uploads',
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | ALLOW I-FRAMING
-    |--------------------------------------------------------------------------
-    |
-    | Normal users will never need to edit this. This option lets you run
-    | Snipe-IT within an I-Frame, which is normally disabled by default for
-    | security reasons, to prevent clickjacking. It should normally be set to false.
-    |
-    */
-
-    'allow_iframing' => env('ALLOW_IFRAMING', false),
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | REFERRER-POLICY
-    |--------------------------------------------------------------------------
-    |
-    | This is an additional security header that browsers use to determine
-    | whether they should report back URL referrer information.
-    |
-    | Read more: https://www.w3.org/TR/referrer-policy/
-    |
-    */
-
-    'referrer_policy' => env('REFERRER_POLICY', 'same-origin'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | CSP
-    |--------------------------------------------------------------------------
-    |
-    | Disable the content security policy that restricts what scripts, images
-    | and styles can load. (This should be left as false if you don't know
-    | what this means.)
-    |
-    | Read more: https://www.w3.org/TR/CSP/
-    | Read more: https://content-security-policy.com
-    |
-    */
-
-    'enable_csp' => env('ENABLE_CSP', false),
-
-
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Demo Mode Lockdown
-    |--------------------------------------------------------------------------
-    |
-    | Normal users will never need to edit this. This option lets you run a
-    | version of Snipe-IT with limited functionality to prevent demo abuse.
-    |
-    */
-
-    'lock_passwords' => env('APP_LOCKED', false),
-
+    'cipher' => 'AES-256-CBC',
 
     /*
     |--------------------------------------------------------------------------
@@ -272,39 +146,22 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Centaur\CentaurServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
 
-        Barryvdh\Debugbar\ServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
-        Spatie\Backup\BackupServiceProvider::class,
-        Fideloper\Proxy\TrustedProxyServiceProvider::class,
-        PragmaRX\Google2FA\Vendor\Laravel\ServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
-        Laravel\Tinker\TinkerServiceProvider::class,
-        Unicodeveloper\DumbPassword\DumbPasswordServiceProvider::class,
-        Schuppo\PasswordStrength\PasswordStrengthServiceProvider::class,
-        Tightenco\Ziggy\ZiggyServiceProvider::class, // Laravel routes in vue
-
         /*
-        * Application Service Providers...
-        */
+         * Application Service Providers...
+         */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\SettingsServiceProvider::class,
-        App\Providers\ValidationServiceProvider::class,
-
-
-        /*
-        * Custom service provider
-        */
-        App\Providers\MacroServiceProvider::class,
-
 
     ],
 
@@ -325,6 +182,7 @@ return [
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
         'Blade' => Illuminate\Support\Facades\Blade::class,
+        'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
         'Config' => Illuminate\Support\Facades\Config::class,
@@ -353,14 +211,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Input' => Illuminate\Support\Facades\Input::class,
-        'Form'      => Collective\Html\FormFacade::class,
-        'Html'      => Collective\Html\HtmlFacade::class,
-        'Google2FA' => PragmaRX\Google2FA\Vendor\Laravel\Facade::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
-        'Image'     => Intervention\Image\ImageManagerStatic::class,
-        'Carbon' => Carbon\Carbon::class,
-
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class
 
     ],
 

@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -9,7 +9,7 @@ return array(
     |
     | The following language lines contain the default error messages used by
     | the validator class. Some of these rules have multiple versions such
-    | such as the size rules. Feel free to tweak each of these messages.
+    | as the size rules. Feel free to tweak each of these messages here.
     |
     */
 
@@ -24,12 +24,12 @@ return array(
     'before'               => 'The :attribute must be a date before :date.',
     'before_or_equal'      => 'The :attribute must be a date before or equal to :date.',
     'between'              => [
-        'numeric' => 'The :attribute must be between :min - :max.',
-        'file'    => 'The :attribute must be between :min - :max kilobytes.',
-        'string'  => 'The :attribute must be between :min - :max characters.',
+        'numeric' => 'The :attribute must be between :min and :max.',
+        'file'    => 'The :attribute must be between :min and :max kilobytes.',
+        'string'  => 'The :attribute must be between :min and :max characters.',
         'array'   => 'The :attribute must have between :min and :max items.',
     ],
-    'boolean'              => 'The :attribute must be true or false.',
+    'boolean'              => 'The :attribute field must be true or false.',
     'confirmed'            => 'The :attribute confirmation does not match.',
     'date'                 => 'The :attribute is not a valid date.',
     'date_format'          => 'The :attribute does not match the format :format.',
@@ -38,7 +38,7 @@ return array(
     'digits_between'       => 'The :attribute must be between :min and :max digits.',
     'dimensions'           => 'The :attribute has invalid image dimensions.',
     'distinct'             => 'The :attribute field has a duplicate value.',
-    'email'                => 'The :attribute format is invalid.',
+    'email'                => 'The :attribute must be a valid email address.',
     'exists'               => 'The selected :attribute is invalid.',
     'file'                 => 'The :attribute must be a file.',
     'filled'               => 'The :attribute field must have a value.',
@@ -67,7 +67,6 @@ return array(
     'not_in'               => 'The selected :attribute is invalid.',
     'numeric'              => 'The :attribute must be a number.',
     'present'              => 'The :attribute field must be present.',
-    'valid_regex'          => 'That is not a valid regex. ',
     'regex'                => 'The :attribute format is invalid.',
     'required'             => 'The :attribute field is required.',
     'required_if'          => 'The :attribute field is required when :other is :value.',
@@ -88,19 +87,6 @@ return array(
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
-    "unique_undeleted"     => "The :attribute must be unique.",
-
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify custom validation messages for attributes using the
-    | convention "attribute.rule" to name the lines. This makes it quick to
-    | specify a specific custom language line for a given attribute rule.
-    |
-    */
-
 
     /*
     |--------------------------------------------------------------------------
@@ -114,11 +100,9 @@ return array(
     */
 
     'custom' => [
-        'alpha_space' => "The :attribute field contains a character that is not allowed.",
-        "email_array"      => "One or more email addresses is invalid.",
-        "hashed_pass"      => "Your current password is incorrect",
-        'dumbpwd'          => 'That password is too common.',
-        "statuslabel_type" => "You must select a valid status label type",
+        'attribute-name' => [
+            'rule-name' => 'custom-message',
+        ],
     ],
 
     /*
@@ -134,4 +118,4 @@ return array(
 
     'attributes' => [],
 
-);
+];

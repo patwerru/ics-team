@@ -15,17 +15,10 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \Illuminate\Session\Middleware\StartSession::class,
-        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \App\Http\Middleware\FrameGuard::class,
-        \App\Http\Middleware\XssProtectHeader::class,
-        \App\Http\Middleware\ReferrerPolicyHeader::class,
-        \App\Http\Middleware\ContentSecurityPolicyHeader::class,
-        \App\Http\Middleware\NosniffGuard::class,
-        \App\Http\Middleware\CheckForSetup::class,
-        \Fideloper\Proxy\TrustProxies::class,
-        \App\Http\Middleware\CheckForDebug::class,
-       // \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
+        \App\Http\Middleware\TrimStrings::class,
+        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\TrustProxies::class,
     ];
 
     /**
@@ -37,15 +30,16 @@ class Kernel extends HttpKernel
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
-            \App\Http\Middleware\CheckLocale::class,
-            \App\Http\Middleware\CheckForTwoFactor::class,
-            \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
             'throttle:60,1',
-            'auth:api',
+            'bindings',
         ],
     ];
 
@@ -58,10 +52,15 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
-        'authorize' => \App\Http\Middleware\CheckPermissions::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'magistrate' => \App\Http\Middleware\MagistrateMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'guests' => \App\Http\Middleware\GuestsMiddleware::class,
+        'registry' => \App\Http\Middleware\RegistryMiddleware::class,
     ];
 }
